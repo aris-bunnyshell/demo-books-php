@@ -53,7 +53,7 @@ jobs:
         run: |-
           set -ex
           echo "BNS_ENV_CREATED=1" >> /github/envs.txt
-          echo "BNS_ENV_ID=`bns environments create --name "${{ env.BNS_ENV_NAME }}" --from-path /work/bunnyshell_pr.yaml --k8s "${{ env.CLUSTER_ID }}" --token ${{ secrets.BUNNYSHELL_ACCESS_TOKEN }} --project ${{ vars.BUNNYSHELL_PROJECT_ID }} --non-interactive -o json \
+          echo "BNS_ENV_ID=`bns environments create --debug --name "${{ env.BNS_ENV_NAME }}" --from-path /work/bunnyshell_pr.yaml --k8s "${{ env.CLUSTER_ID }}" --token ${{ secrets.BUNNYSHELL_ACCESS_TOKEN }} --project ${{ vars.BUNNYSHELL_PROJECT_ID }} --non-interactive -o json \
             | jq -r '.id'`" >> /github/envs.txt
     - name: Deploy Environment
       uses: addnab/docker-run-action@v3
